@@ -85,5 +85,5 @@ backend static
 backend app
     balance     roundrobin
 {% for hosts in groups['prod'] %}
-   server app1 {{ hosts }}:80/hello.php check
+   server app1 {{ hostvars[hosts]['ansible_facts']['default_ipv4']['address'] }}:80/hello.php check
 {% endfor %}
